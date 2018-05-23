@@ -7,6 +7,7 @@ public class Box : MonoBehaviour {
 	public string tag = "Block";
 	List<GameObject> elements;
 	public GameObject point;
+	public int maxElements = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -26,9 +27,14 @@ public class Box : MonoBehaviour {
 	{
 		Debug.Log("Object is Enter");
 		if (other.gameObject.tag.Equals(tag)) {
+
+			if (elements.Count >= maxElements) {
+				return;
+			}
+
 			Block block = other.gameObject.GetComponent<Block>();
 
-			if (block.isAddBox) {
+			if (block.isAddBox || block.isGrab) {
 				return;
 			}
 
@@ -40,10 +46,37 @@ public class Box : MonoBehaviour {
 			rigidbody.isKinematic = true;
 
 			elements.Add(other.gameObject);
+
 			other.gameObject.transform.position = point.transform.position;
-			
+			other.gameObject.transform.rotation = transform.rotation;
 			Vector3 newPosition = point.transform.position;
-			newPosition.z += 2;
+			newPosition.z += 0.6f;
+			point.transform.position = newPosition;
+		}
+	}
+
+	void OnTriggerStay(Collider other)
+	{
+		if (other.gameObject.tag.Equals(tag)) {
+			Block block = other.gameObject.GetComponent<Block>();
+
+			if (block.isGrab || block.isAddBox) {
+				return;
+			}
+
+			block.isAddBox = true;
+
+			Rigidbody rigidbody = other.gameObject.GetComponent<Rigidbody>();
+			rigidbody.useGravity = false;
+			rigidbody.velocity = Vector3.zero;
+			rigidbody.isKinematic = true;
+
+			elements.Add(other.gameObject);
+
+			other.gameObject.transform.position = point.transform.position;
+			other.gameObject.transform.rotation = transform.rotation;
+			Vector3 newPosition = point.transform.position;
+			newPosition.z += 0.6f;
 			point.transform.position = newPosition;
 		}
 	}
@@ -60,7 +93,7 @@ public class Box : MonoBehaviour {
 			block.isAddBox = false;
 
 			Rigidbody rigidbody = other.gameObject.GetComponent<Rigidbody>();
-			rigidbody.useGravity = true;
+			// rigidbody.useGravity = true;
 			rigidbody.isKinematic = false;
 		}
 	}
