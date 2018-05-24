@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 419941428}
   - component: {fileID: 419941427}
   - component: {fileID: 419941426}
-  - component: {fileID: 419941425}
+  - component: {fileID: 419941430}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Robot
@@ -445,24 +445,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &419941425
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 419941424}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fc66a70090b1e8c4a8408e2eb7324863, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &419941426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -524,12 +506,24 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 419941424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.192, y: 0.1969329, z: 0.28457344}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &419941430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 419941424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694ccd5c5eeb40ec9b7afcf2f0bd724d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 1
 --- !u!1 &484812313
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Commands:
   - {fileID: 114185652623410490, guid: 882754298923899459c7a789050773cb, type: 2}
+  - {fileID: 114265871816775738, guid: b0aa4d1c81e3b7148a273a64fac8c1a3, type: 2}
   - {fileID: 114185652623410490, guid: 882754298923899459c7a789050773cb, type: 2}
 --- !u!1 &741612305
 GameObject:

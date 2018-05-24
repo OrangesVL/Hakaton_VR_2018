@@ -21,11 +21,11 @@ namespace Model
 
         public void RotateLeft()
         {
-            _direction = _direction - 1;
+            _direction = (Directions)(((int)_direction-1)%3);
         }
         public void RotateRight()
         {
-            _direction = _direction + 1;
+            _direction = (Directions)(((int)_direction+1)%3);
         }
         public void MoveForward(bool flag)
         {

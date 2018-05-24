@@ -22,7 +22,6 @@ namespace Managers
                 return _robot;
             }
         }
-
         private void Start()
         {
             _commandController = new CommandController();

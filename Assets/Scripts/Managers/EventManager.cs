@@ -10,7 +10,7 @@ namespace Managers
 	{
 		public Action<Command> OnClickTileCreate = command => {Debug.Log("Tile Create"); };
 		public Action<List<Command>> OnStartExecuteCommands = commands => { Debug.Log("Start Execute Commands"); };
-		public Action<Command> OnCommandError = command => { Debug.Log("Error command " + command.NameCommand); };
-		public Action<Command> OnCommandSuccess = command => { Debug.Log("Command success " + command.NameCommand); };
+		public Action OnCommandComplete = () => { Debug.Log("Command complete"); };
+		public Action<List<CheckCommand>> OnCommandsChecked = commands => { Debug.Log("Commands Checked"); };
 	}
 }

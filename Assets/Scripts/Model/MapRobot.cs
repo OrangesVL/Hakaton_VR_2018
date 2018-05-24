@@ -3,21 +3,21 @@ using UnityEngine;
 
 namespace Model
 {
-    public class MapRobotMovement
+    public class MapRobot
     {
         private int[,] _map;
 
-        public MapRobotMovement()
+        public MapRobot()
         {
             Robot = new UnitOnMap(new Point(0,0), Directions.Down);
             _map = new [,]
             {
-                {0,1,0},
-                {1,1,0},
+                {0,0,0},
+                {0,0,0},
                 {0,0,0}
             };
         }
-        public UnitOnMap Robot { get; private set; }
+        public UnitOnMap Robot { get; set; }
 
         public bool HaveErrors()
         {
@@ -30,6 +30,22 @@ namespace Model
         private bool RobotOnErrorTile()
         {
             return _map[Robot.Point.X, Robot.Point.Y] == 1;
+        }
+        
+        public void ShowLog()
+        {
+            var log = "";
+            for (var x = 0; x < _map.GetLength(0); x++)
+            {
+                for (var y = 0; y < _map.GetLength(1); y++)
+                {
+                    if (Robot.Point.X == x && Robot.Point.Y == y) log += "x \t";
+                    else   log += _map[x, y] + "\t";
+                }
+
+                log += "\n";
+            }
+            Debug.Log(log);
         }
     }
 }

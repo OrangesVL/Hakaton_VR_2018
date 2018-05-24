@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Model
 {
-
     public enum Commands
     {
         Forward,
