@@ -23,11 +23,11 @@ namespace Model
             get { return _parametr; }
             set { _parametr = value; }
         }
-
         public Commands NameCommand
         {
             get { return _nameCommand; }
             set { _nameCommand = value; }
         }
+        
     }
 }

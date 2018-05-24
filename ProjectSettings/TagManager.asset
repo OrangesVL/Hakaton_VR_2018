@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TeleportIgnore
   - Block
+  - Robot
   layers:
   - Default
   - TransparentFX

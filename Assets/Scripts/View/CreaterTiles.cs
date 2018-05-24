@@ -18,9 +18,9 @@ namespace View
 
         private void FillListCommands()
         {
-            for (var index = 0; index < ObjectManagers.Instance.Commands.Length; index++)
+            for (var index = 0; index < SceneManager.Instance.Commands.Length; index++)
             {
-                ShowElement(ObjectManagers.Instance.Commands[index],index);
+                ShowElement(SceneManager.Instance.Commands[index],index);
             }
         }
         

@@ -52,4 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameCommand: 0
-  _parametr: 0
+  _parametr: 1
