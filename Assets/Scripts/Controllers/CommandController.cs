@@ -15,6 +15,7 @@ namespace Controllers
         {
             _map = new MapRobot();
             EventManager.Instance.OnStartExecuteCommands += StartExecuteCommands;
+            EventManager.Instance.OnCommandComplete += () => { _map = new MapRobot(); };
         }
 
         private void StartExecuteCommands(List<Command> commands)
@@ -25,59 +26,60 @@ namespace Controllers
             {
                 _map.ShowLog();
                 ExecuteCommand(command);
-                /*if (ExecuteCommand(command))
-                    checkedCommands.Add(new CheckCommand {Command = command, IsError = false});
-                else checkedCommands.Add(new CheckCommand {Command = command, IsError = true});*/
-                _map.ShowLog();
+                //_map.ShowLog();
             }
+            _map.ShowLog();
             EventManager.Instance.OnCommandsChecked(_checkedCommands);
         }
-        private bool ExecuteCommand(Command command)
+        private void ExecuteCommand(Command command)
         {
             switch (command.NameCommand)
             {
                 case Commands.Forward:
-                {
                     for (var index = 0; index < command.Parametr; index++)
                     {
-                        _map.Robot.MoveForward(true);
+                        _map.Robot.MoveForward();
                         if (_map.HaveErrors())
                         {
-                            _map.Robot.MoveForward(false);
+                            _map.Robot.MoveBack();
                             _checkedCommands.Add(new CheckCommand {Command = command, IsError = true});
-                            return false;
+                                break;
+                        }
+
+                        if (_map.HaveWictory()) {
+                            _checkedCommands.Add(new CheckCommand { Command = command, IsError = false, IsWictory = true});
+                                break;
                         }
                         _checkedCommands.Add(new CheckCommand {Command = command, IsError = false});
                     }
-                    return true;
-                }
+                    break;
                 case Commands.Back:
-                {
                     for (var index = 0; index < command.Parametr; index++)
                     {
-                        _map.Robot.MoveForward(false);
+                        _map.Robot.MoveBack();
                         if (_map.HaveErrors())
                         {
-                            _map.Robot.MoveForward(true);
+                            _map.Robot.MoveForward();
                             _checkedCommands.Add(new CheckCommand {Command = command, IsError = true});
-                            return false;
+                                break;
+                        }
+                        if (_map.HaveWictory())
+                        {
+                            _checkedCommands.Add(new CheckCommand { Command = command, IsError = false, IsWictory = true });
+                                break;
                         }
                         _checkedCommands.Add(new CheckCommand {Command = command, IsError = false});
                     }
-                    return true;
-                }
+                    break;
                 case Commands.RotateRight:
-                {
+                     
                     _map.Robot.RotateRight();
                     _checkedCommands.Add(new CheckCommand {Command = command, IsError = false});
-                }
-                    return true;
+                    break;
                 case Commands.RotateLeft:
-                {
                     _map.Robot.RotateLeft();
                     _checkedCommands.Add(new CheckCommand {Command = command, IsError = false});
-                }
-                    return true;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

@@ -1,6 +1,7 @@
 ﻿using Controllers;
 using Model;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -10,6 +11,7 @@ namespace Managers
         private GameObject _robot;
 
         public Command[] Commands;
+        public bool IsWork = false;
 
         public GameObject Robot
         {
@@ -25,6 +27,12 @@ namespace Managers
         private void Start()
         {
             _commandController = new CommandController();
+            LoadScene();
+        }
+
+        public void LoadScene()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("MainScene", LoadSceneMode.Additive);
         }
     }
 }

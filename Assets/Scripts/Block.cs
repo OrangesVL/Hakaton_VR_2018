@@ -28,6 +28,7 @@ public class Block : MonoBehaviour {
 	public void InteractableObjectGrabbed(object sender, VRTK.InteractableObjectEventArgs e) {
 		Debug.Log("Grabe Object");
 		isGrab = true;
+        GetComponent<Rigidbody>().isKinematic = true;
 	}
 
 	public void InteractableObjectUngrabbed(object sender, VRTK.InteractableObjectEventArgs e) {

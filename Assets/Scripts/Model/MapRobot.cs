@@ -9,19 +9,28 @@ namespace Model
 
         public MapRobot()
         {
-            Robot = new UnitOnMap(new Point(0,0), Directions.Down);
-            _map = new [,]
+            Robot = new UnitOnMap(new Point(0,0), Directions.Down); // Down ->
+            _map = new int[5, 5];
+            for(var x = 0; x < _map.GetLength(0); x++)
             {
-                {0,0,0},
-                {0,0,0},
-                {0,0,0}
-            };
+                for(var y=0; y< _map.GetLength(1); y++)
+                {
+                    _map[x, y] = 0;
+                }
+            }
+            _map[2, 1] = 1;
+            _map[2, 2] = 1;
+            _map[3, 3] = 2;
         }
         public UnitOnMap Robot { get; set; }
 
         public bool HaveErrors()
         {
             return !RobotIsInsideMap() || RobotOnErrorTile();
+        }
+        public bool HaveWictory()
+        {
+            return _map[Robot.Point.X, Robot.Point.Y] == 2;
         }
         private bool RobotIsInsideMap()
         {
@@ -31,7 +40,7 @@ namespace Model
         {
             return _map[Robot.Point.X, Robot.Point.Y] == 1;
         }
-        
+
         public void ShowLog()
         {
             var log = "";
@@ -45,7 +54,8 @@ namespace Model
 
                 log += "\n";
             }
-            Debug.Log(log);
+
+            Debug.Log(log + "\n" + Robot.Directions);
         }
     }
 }
