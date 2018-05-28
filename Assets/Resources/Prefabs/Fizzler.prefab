@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4064287277001700}
   m_Layer: 0
-  m_Name: Fizzler
+  m_Name: fizzler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,6 +112,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 14141668eb6174040925aaa80006fefe, type: 2}
   m_StaticBatchInfo:
